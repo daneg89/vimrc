@@ -78,6 +78,8 @@ set tabstop=2
 :ab hors hours
 :ab teh the
 
+colorscheme codeschool
+
 " Custom highlighting
 highlight CursorLine ctermbg=0x000000 cterm=bold
 
@@ -93,8 +95,8 @@ highlight CursorLine ctermbg=0x000000 cterm=bold
 :vnoremap <C-down> :m '>+1<CR>gv=gv
 
 " Add newline above/under current line
-:nnoremap <leader>O O<ESC>j
-:nnoremap <leader>o o<ESC>k
+:nnoremap <leader>O O<ESC>
+:nnoremap <leader>o o<ESC>
 
 " Move between windows more simply
 :nnoremap <C-h> <C-w>h
@@ -113,6 +115,8 @@ highlight CursorLine ctermbg=0x000000 cterm=bold
 " Open up all opened buffers in tabs
 :nnoremap <leader>t :tab ball<CR>
 
+" Close current buffer
+:nnoremap <leader>q :q<CR>
 " Delete current buffer
 :nnoremap <leader>c :bd<CR>
 
@@ -133,7 +137,8 @@ highlight CursorLine ctermbg=0x000000 cterm=bold
 " Templates for when we creating new files
 :augroup FileTemplates
 :   autocmd!
-:   autocmd BufNewFile *.rb 0r ~/.vim/ruby.skel
+:   autocmd BufNewFile *.rb 0r ~/.vim/file-templates/ruby.skel
+:   autocmd BufNewFile *.c 0r ~/.vim/file-templates/c.skel
 :augroup END
 
 " --------------- End Custom Section --------------- 
