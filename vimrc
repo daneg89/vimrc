@@ -50,6 +50,8 @@ filetype plugin indent on    " required
 " My leader will be - for now since it's not used all that often
 :let mapleader = "-"
 
+" You Complete Me related. Avoid getting those annoying error messages in .c files
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 
 set background=dark
 " Highlight the current line the cursor is on 
@@ -139,6 +141,12 @@ highlight CursorLine ctermbg=0x000000 cterm=bold
 :   autocmd!
 :   autocmd BufNewFile *.rb 0r ~/.vim/file-templates/ruby.skel
 :   autocmd BufNewFile *.c 0r ~/.vim/file-templates/c.skel
+:augroup END
+
+" Fix syntax highlighting for Markdown files
+:augroup MarkdownGroup
+:   autocmd!
+:   autocmd BufNewFile,BufRead *.md :set filetype=markdown
 :augroup END
 
 " --------------- End Custom Section --------------- 
