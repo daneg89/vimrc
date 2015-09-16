@@ -89,9 +89,9 @@ highlight CursorLine ctermbg=0x000000 cterm=bold
 :nnoremap <C-right> <ESC>:bn<CR>
 :nnoremap <C-left> <ESC>:bp<CR>
 
-" Move lines up and down easily
-:nnoremap <C-up> ddkP
-:nnoremap <C-down> ddp
+" Move lines up and down easily and indent them
+:nnoremap <C-up> ddkP==
+:nnoremap <C-down> ddp==
 
 :vnoremap <C-up> :m '<-2<CR>gv=gv
 :vnoremap <C-down> :m '>+1<CR>gv=gv
@@ -100,10 +100,11 @@ highlight CursorLine ctermbg=0x000000 cterm=bold
 :nnoremap <leader>O O<ESC>
 :nnoremap <leader>o o<ESC>
 
-" Move between windows more simply
+" Move between windows more simply. Moving between horizontally split windows
+" will cause the current window to be maximized.
 :nnoremap <C-h> <C-w>h
-:nnoremap <C-j> <C-w>j
-:nnoremap <C-k> <C-w>k
+:nnoremap <C-j> <C-w>j<C-w>_
+:nnoremap <C-k> <C-w>k<C-w>_
 :nnoremap <C-l> <C-w>l
 
 " Escape is so far away, let's avoid it
