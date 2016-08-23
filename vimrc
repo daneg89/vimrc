@@ -64,7 +64,7 @@ set incsearch
 " Macros will be faster if they don't have to draw everything
 set lazyredraw
 set nobackup
-set number
+set relativenumber
 set ruler
 set shiftwidth=2
 set tabstop=2
@@ -130,6 +130,13 @@ highlight CursorLine ctermbg=0x000000 cterm=bold
 " Go to the first/last character of the line
 :nnoremap <leader>0 g^
 :nnoremap <leader>$ g$
+
+" Use relative numbering unless in insert mode or not using vim
+:augroup LineNumbering
+:   autocmd!
+:   autocmd InsertEnter * :set number
+:   autocmd InsertLeave * :set relativenumber
+:augroup END
 
 " Force syntax of .inc files to be Pascal
 :augroup PascalGroup
