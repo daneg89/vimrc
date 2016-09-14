@@ -64,6 +64,9 @@ set incsearch
 " Macros will be faster if they don't have to draw everything
 set lazyredraw
 set nobackup
+" number to show curr line #, relativenumber to show lines relative to curr
+" line
+set number
 set relativenumber
 set ruler
 set shiftwidth=2
