@@ -1,9 +1,22 @@
 #!/bin/bash
 
-cp vimrc ~/.vimrc
-
 if [ ! -d ~/.vim/ ]; then
   mkdir ~/.vim
 fi
 
-cp -r colors ~/.vim/
+cp -i vimrc ~/.vimrc
+
+if [ ! -d ~/.vim/file-templates ]; then
+  mkdir ~/.vim/file-templates/
+fi
+
+cp -i file-templates/* ~/.vim/file-templates/
+
+if [ ! -d ~/.config/nvim/config/ ]; then
+  mkdir -p ~/.config/nvim/config/
+fi
+
+cp -i nvim/init.vim ~/.config/nvim
+cp -i nvim/plugins.vim ~/.config/nvim/config/
+
+echo Vim setup finished!

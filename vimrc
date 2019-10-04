@@ -1,57 +1,5 @@
-" --------------- Plugin Section --------------- 
-
-" Vundle required settings
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" Have runpath also include ctrlp
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-
-" plugin from http://vim-scripts.org/vim/scripts.html
-"Plugin 'L9'
-"
-
-" plugin from http://vimawesome.com/plugin/youcompleteme
-Plugin 'Valloric/YouCompleteMe'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
-" --------------- End Plugin Section --------------- 
-
-
-" --------------- Custom Section --------------- 
-
 " My leader will be - for now since it's not used all that often
 :let mapleader = "-"
-
-" You Complete Me related. Avoid getting those annoying error messages in .c files
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 
 set background=dark
 " Highlight the current line the cursor is on 
@@ -64,13 +12,18 @@ set incsearch
 " Macros will be faster if they don't have to draw everything
 set lazyredraw
 set nobackup
-" number to show curr line #, relativenumber to show lines relative to curr
-" line
+" number to show curr line #, relativenumber to show lines relative to curr line
 set number
-set relativenumber
 set ruler
 set shiftwidth=2
 set tabstop=2
+set termguicolors
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" Always show sign col
+set signcolumn=yes
 
 " Wild menu
 :set wildignore=*.swf,*.o,*.png,*.jpg,*.swz,*.swc
@@ -82,11 +35,6 @@ set tabstop=2
 :ab hrs hours
 :ab hors hours
 :ab teh the
-
-colorscheme codeschool
-
-" Custom highlighting
-highlight CursorLine ctermbg=0x000000 cterm=bold
 
 " Easy buffer switching
 :nnoremap <C-right> <ESC>:bn<CR>
@@ -106,8 +54,8 @@ highlight CursorLine ctermbg=0x000000 cterm=bold
 " Move between windows more simply. Moving between horizontally split windows
 " will cause the current window to be maximized.
 :nnoremap <C-h> <C-w>h
-:nnoremap <C-j> <C-w>j<C-w>_
-:nnoremap <C-k> <C-w>k<C-w>_
+:nnoremap <C-j> <C-w>j
+:nnoremap <C-k> <C-w>k
 :nnoremap <C-l> <C-w>l
 
 " Escape is so far away, let's avoid it
@@ -134,30 +82,65 @@ highlight CursorLine ctermbg=0x000000 cterm=bold
 :nnoremap <leader>0 g^
 :nnoremap <leader>$ g$
 
-" Use relative numbering unless in insert mode or not using vim
-:augroup LineNumbering
-:   autocmd!
-:   autocmd InsertEnter * :set number
-:   autocmd InsertLeave * :set relativenumber
-:augroup END
-
-" Force syntax of .inc files to be Pascal
-:augroup PascalGroup
-:   autocmd!
-:   autocmd FileType pov :set syntax=pascal
-:augroup END
-
 " Templates for when we creating new files
 :augroup FileTemplates
 :   autocmd!
-:   autocmd BufNewFile *.rb 0r ~/.vim/file-templates/ruby.skel
-:   autocmd BufNewFile *.c 0r ~/.vim/file-templates/c.skel
+:   autocmd BufNewFile *.vue 0r ~/.vim/file-templates/vue-template.vue
 :augroup END
 
-" Fix syntax highlighting for Markdown files
-:augroup MarkdownGroup
-:   autocmd!
-:   autocmd BufNewFile,BufRead *.md :set filetype=markdown
-:augroup END
 
-" --------------- End Custom Section --------------- 
+" --------------- Begin Plugin Section --------------- 
+
+" Neovim specific config
+if has('nvim')
+  " Config directory setup and loading if there is anything
+  if !isdirectory($HOME."/.config/nvim/config")
+    call mkdir($HOME."/.config/nvim/config", "p")
+  else
+    for f in split(glob('~/.config/nvim/config/*.vim'), '\n')
+      exe 'source' f
+    endfor
+  endif
+
+  " Escape terminal
+  :tnoremap <Esc> <C-\><C-n>
+  " Allow paste of registers
+  :tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
+endif
+
+" Download and install Plug if not already available
+if has('nvim')
+	if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+		silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+					\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+		autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+	endif
+
+else
+	if empty(glob('~/.vim/autoload/plug.vim'))
+		silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+					\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+		autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+	endif
+endif
+
+
+call plug#begin()
+
+Plug 'joshdick/onedark.vim'
+Plug 'posva/vim-vue'
+Plug 'shmargum/vim-sass-colors'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
+" Searching + Editing
+Plug 'dyng/ctrlsf.vim' 
+" Conquer of Completion, intellisense engine
+Plug 'neoclide/coc.nvim', {'branch': 'release'} 
+" Async Lint Engine
+Plug 'dense-analysis/ale'
+" JavaScript syntax highlighting
+Plug 'pangloss/vim-javascript'
+
+call plug#end()
+
+syntax on
+colorscheme onedark
