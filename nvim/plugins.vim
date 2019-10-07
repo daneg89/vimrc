@@ -2,7 +2,8 @@
 :nnoremap <C-p> <ESC>:FZF<CR>
 
 " CtrlSF
-:nnoremap <leader>f <<ESC>:CtrlSF<space>
+:nnoremap <leader>f <ESC>:CtrlSF<space>
+:vmap <S-f> <Plug>CtrlSFVwordPath
 let g:ctrlsf_ackprg='rg'
 
 " Conquer of Completion, intellisense engine
@@ -23,7 +24,6 @@ inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Async Linter Engine
-
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \}
@@ -32,3 +32,11 @@ let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
 \}
+
+" Lightline theme
+let g:lightline = {
+  \ 'colorscheme': 'onedark',
+  \ }
+
+" Airline theme
+let g:airline_theme='onedark'

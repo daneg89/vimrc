@@ -31,6 +31,8 @@ set signcolumn=yes
 " .swp files will be redirected to these folders
 :set dir=~/tmp,/var/tmp,.
 
+:set foldmethod=syntax
+
 " Custom abbreviations
 :ab hrs hours
 :ab hors hours
@@ -139,6 +141,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
 " JavaScript syntax highlighting
 Plug 'pangloss/vim-javascript'
+Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
 
 call plug#end()
 
