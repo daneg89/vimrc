@@ -1,20 +1,22 @@
 " FZF
-:nnoremap <C-p> <ESC>:FZF<CR>
+:nnoremap <C-p> :FZF<CR>
+
+" Use FZF with current buffers
+:nnoremap <leader>b :call fzf#run({'source': map(filter(range(1, bufnr('$')), 'buflisted(v:val)'),
+\               'bufname(v:val)'),
+\ 'sink': 'e', 'down': '30%'})
+\<CR>
 
 " CtrlSF
-:nnoremap <leader>f <ESC>:CtrlSF<space>
+:nnoremap <leader>f :CtrlSF<space>
 :vmap <S-f> <Plug>CtrlSFVwordPath
 let g:ctrlsf_ackprg='rg'
+" Just go to the window to browse search results
+let g:ctrlsf_auto_focus = {
+\ "at": "start"
+\ }
 
 " Conquer of Completion, intellisense engine
-
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
@@ -40,3 +42,6 @@ let g:lightline = {
 
 " Airline theme
 let g:airline_theme='onedark'
+
+" NERDTree
+:nnoremap <leader>e :NERDTreeToggle<CR>

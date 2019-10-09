@@ -19,14 +19,20 @@ set shiftwidth=2
 set tabstop=2
 set termguicolors
 
+" Focus on middle of the screen when scrolling
+set scrolljump=-50
+
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
 
 " Always show sign col
 set signcolumn=yes
 
-" Wild menu
-:set wildignore=*.swf,*.o,*.png,*.jpg,*.swz,*.swc
+" Ignore build/repo things
+set wildignore+=**/node_modules/**
+set wildignore+=**/.git/**
+set wildignore+=**/build/**
+set wildignore+=**/dist/**
 
 " .swp files will be redirected to these folders
 :set dir=~/tmp,/var/tmp,.
@@ -143,6 +149,7 @@ Plug 'dense-analysis/ale'
 Plug 'pangloss/vim-javascript'
 Plug 'itchyny/lightline.vim'
 Plug 'vim-airline/vim-airline'
+Plug 'scrooloose/nerdtree'
 
 call plug#end()
 
