@@ -39,14 +39,9 @@ set wildignore+=**/dist/**
 
 :set foldmethod=syntax
 
-" Custom abbreviations
-:ab hrs hours
-:ab hors hours
-:ab teh the
-
 " Easy buffer switching
-:nnoremap <C-right> <ESC>:bn<CR>
-:nnoremap <C-left> <ESC>:bp<CR>
+:nnoremap <C-right> :bn<CR>
+:nnoremap <C-left> :bp<CR>
 
 " Move lines up and down easily and indent them
 :nnoremap <C-up> ddkP==
@@ -71,14 +66,18 @@ set wildignore+=**/dist/**
 :inoremap df <ESC>
 
 " Modify and update vimrc
-:nnoremap <leader>v :tabe ~/.vimrc<CR>
-:nnoremap <leader>s :source ~/.vimrc<CR>
+:nnoremap <leader>. :source ~/.vimrc<CR>
 
-" Open up all opened buffers in tabs
-:nnoremap <leader>t :tab ball<CR>
+" Easy tab
+:nnoremap <leader>t :tabnew<CR>
+
+" Easy Splits
+:nnoremap <leader>s :sp<CR>
+:nnoremap <leader>v :vs<CR>
 
 " Close current buffer
 :nnoremap <leader>q :q<CR>
+
 " Delete current buffer
 :nnoremap <leader>c :bd<CR>
 
@@ -137,7 +136,7 @@ call plug#begin()
 
 Plug 'joshdick/onedark.vim'
 Plug 'posva/vim-vue'
-Plug 'shmargum/vim-sass-colors'
+" Failing randomly : ( Plug 'shmargum/vim-sass-colors'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
 " Searching + Editing
 Plug 'dyng/ctrlsf.vim' 
