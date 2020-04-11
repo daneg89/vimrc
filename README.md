@@ -1,5 +1,11 @@
 # Another .vimrc Configuration
 
+## Plugin Requirements
+
+* [neovim](https://neovim.io/) (Preferred) or Vim 8+
+* Latest stable version of [Node.js](https://nodejs.org) for [CoC plugin](https://github.com/neoclide/coc.nvim)
+* Installation of [ripgrep](https://github.com/BurntSushi/ripgrep)(ripgrep) or some other search utility for CtrlSF plugin
+
 ## Installation
 
 This repo includes a shell script for doing some folder organization, specifically for [neovim](https://neovim.io/) and some various configuration things, if you don't want all of that just ignore the rest of the steps and copy whatever looks interesting.
