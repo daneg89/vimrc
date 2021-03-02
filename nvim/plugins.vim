@@ -15,6 +15,8 @@ let g:ctrlsf_ackprg='rg'
 let g:ctrlsf_auto_focus = {
 \ "at": "start"
 \ }
+" Results go to quickfix so we can use cnext
+let g:ctrlsf_populate_qflist = 1
 
 " Conquer of Completion, intellisense engine
 
@@ -23,11 +25,11 @@ inoremap <silent><expr> <c-space> coc#refresh()
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -59,5 +61,26 @@ let g:lightline = {
 " Airline theme
 let g:airline_theme='onedark'
 
+" Deoplete settings
+let g:deoplete#enable_at_startup = 1
+
+" neosnippet settings
+" imap <C-k> <Plug>(neosnippet_expand_or_jump)
+" smap <C-k> <Plug>(neosnippet_expand_or_jump)
+"xmap <C-k> <Plug>(neosnippet_expand_target)
+
+" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+" \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" Ultisnips settings
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-k>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+
 " NERDTree
 :nnoremap <leader>e :NERDTreeToggle<CR>
+
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']

@@ -6,6 +6,8 @@ set background=dark
 set cursorline
 " Tabs will become spaces
 set expandtab
+" buffers that have been edited can be hidden away
+set hidden
 set hlsearch
 set ignorecase
 set incsearch
@@ -37,8 +39,6 @@ set wildignore+=**/dist/**
 " .swp files will be redirected to these folders
 :set dir=~/tmp,/var/tmp,.
 
-:set foldmethod=syntax
-
 " Easy buffer switching
 :nnoremap <C-right> :bn<CR>
 :nnoremap <C-left> :bp<CR>
@@ -46,9 +46,6 @@ set wildignore+=**/dist/**
 " Move lines up and down easily and indent them
 :nnoremap <C-up> ddkP==
 :nnoremap <C-down> ddp==
-
-:vnoremap <C-up> :m '<-2<CR>gv=gv
-:vnoremap <C-down> :m '>+1<CR>gv=gv
 
 " Add newline above/under current line
 :nnoremap <leader>O O<ESC>
@@ -88,6 +85,23 @@ set wildignore+=**/dist/**
 " Go to the first/last character of the line
 :nnoremap <leader>0 g^
 :nnoremap <leader>$ g$
+
+" Move visual block
+:vnoremap J :m '>+1<CR>gv=gv
+:vnoremap K :m '<-2<CR>gv=gv
+
+cnoreabbrev W! w!
+cnoreabbrev Q! q!
+cnoreabbrev Qall! qall!
+cnoreabbrev Qa! qa!
+cnoreabbrev Wq wq
+cnoreabbrev Wa wa
+cnoreabbrev wQ wq
+cnoreabbrev WQ wq
+cnoreabbrev W w
+cnoreabbrev Q q
+cnoreabbrev Qa qa
+cnoreabbrev Qall qall
 
 " Templates for when we creating new files
 :augroup FileTemplates
@@ -141,7 +155,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
 " Searching + Editing
 Plug 'dyng/ctrlsf.vim' 
 " Conquer of Completion, intellisense engine
-Plug 'neoclide/coc.nvim', {'branch': 'release'} 
+" Plug 'neoclide/coc.nvim', {'branch': 'release'} 
 " Async Lint Engine
 Plug 'dense-analysis/ale'
 " JavaScript syntax highlighting
@@ -149,8 +163,36 @@ Plug 'pangloss/vim-javascript'
 Plug 'itchyny/lightline.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdtree'
+" Easy sorrounding features
+Plug 'tpope/vim-surround'
+" Git specific status symbols
+Plug 'airblade/vim-gitgutter'
+" Closing bracket/brace/quote/etc
+Plug 'jiangmiao/auto-pairs'
+
+Plug 'Yggdroot/indentLine'
+
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+
+" Plug 'Shougo/neosnippet.vim'
+" Plug 'Shougo/neosnippet-snippets'
+
+" Track the engine.
+Plug 'SirVer/ultisnips'
+
+" Snippets are separated from the engine. Add this if you want them:
+Plug 'honza/vim-snippets'
 
 call plug#end()
 
 syntax on
 colorscheme onedark
+" Remove bg to let term choose
+hi Normal guibg=NONE ctermbg=NONE
+
