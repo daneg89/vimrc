@@ -17,6 +17,8 @@ let g:ctrlsf_auto_focus = {
 \ }
 " Results go to quickfix so we can use cnext
 let g:ctrlsf_populate_qflist = 1
+" Was seeing errors from this, just disable it
+let g:ctrlsf_fold_result = 0
 
 " Conquer of Completion, intellisense engine
 
@@ -63,6 +65,9 @@ let g:airline_theme='onedark'
 
 " Deoplete settings
 let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option('omni_patterns', {
+\ 'go': '[^. *\t]\.\w*',
+\})
 
 " neosnippet settings
 " imap <C-k> <Plug>(neosnippet_expand_or_jump)
@@ -84,3 +89,4 @@ let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 :nnoremap <leader>e :NERDTreeToggle<CR>
 
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+let g:indentLine_fileTypeExclude = ['markdown', 'json']

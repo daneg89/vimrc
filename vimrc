@@ -21,6 +21,9 @@ set shiftwidth=2
 set tabstop=2
 set termguicolors
 
+" scroll with mouse in normal mode
+set mouse=n
+
 " Focus on middle of the screen when scrolling
 set scrolljump=-50
 
@@ -103,6 +106,7 @@ cnoreabbrev Q q
 cnoreabbrev Qa qa
 cnoreabbrev Qall qall
 
+
 " Templates for when we creating new files
 :augroup FileTemplates
 :   autocmd!
@@ -117,10 +121,6 @@ if has('nvim')
   " Config directory setup and loading if there is anything
   if !isdirectory($HOME."/.config/nvim/config")
     call mkdir($HOME."/.config/nvim/config", "p")
-  else
-    for f in split(glob('~/.config/nvim/config/*.vim'), '\n')
-      exe 'source' f
-    endfor
   endif
 
   " Escape terminal
@@ -171,6 +171,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'jiangmiao/auto-pairs'
 
 Plug 'Yggdroot/indentLine'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -189,6 +190,9 @@ Plug 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plug 'honza/vim-snippets'
 
+" Requires neovim 0.5+
+Plug 'neovim/nvim-lspconfig'
+
 call plug#end()
 
 syntax on
@@ -196,3 +200,19 @@ colorscheme onedark
 " Remove bg to let term choose
 hi Normal guibg=NONE ctermbg=NONE
 
+" Define some custom highlighting to help with combing through logs and other files
+" Needs to be called after colorscheme as the current one clears all highlighting
+:highlight Angry ctermbg=red ctermfg=white guibg=red guifg=white
+:highlight Danger ctermbg=lightyellow ctermfg=black guibg=lightyellow guifg=black
+:highlight Nice ctermbg=green ctermfg=white guibg=green guifg=white
+
+:nnoremap <leader>h :call matchadd("Angry\|Danger\|Nice", "")
+:nnoremap <leader>l :call clearmatches()<CR>
+
+" Any custom plugin config files can be run now
+if has('nvim')
+  " Config directory setup and loading if there is anything
+  for f in split(glob('~/.config/nvim/config/*.vim'), '\n')
+    exe 'source' f
+  endfor
+endif
