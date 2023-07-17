@@ -1,6 +1,10 @@
 " My leader will be - for now since it's not used all that often
 :let mapleader = "-"
 
+set foldmethod=syntax
+" Don't automatically fold everything on opening a file
+set foldlevel=99
+
 set background=dark
 " Highlight the current line the cursor is on 
 set cursorline
@@ -16,7 +20,17 @@ set lazyredraw
 set nobackup
 " number to show curr line #, relativenumber to show lines relative to curr line
 set number
+set relativenumber
 set ruler
+
+" This will always keep the cursor in the middle, even when moving up/down
+" with anything. Trying this out for now to see if it feels better, but
+" might be cool to see how keeping things in focus feels.
+" Note that this kind of bricks the shift+H and shift+L motions
+" so probably will have to lean on relative number a bit more when
+" jumping to things.
+set scrolloff=999
+
 set shiftwidth=2
 set tabstop=2
 set termguicolors
@@ -63,7 +77,6 @@ set wildignore+=**/dist/**
 
 " Escape is so far away, let's avoid it
 :inoremap jk <ESC>
-:inoremap df <ESC>
 
 " Modify and update vimrc
 :nnoremap <leader>. :source ~/.vimrc<CR>
@@ -148,6 +161,7 @@ endif
 
 call plug#begin()
 
+Plug 'tpope/vim-fugitive'
 Plug 'joshdick/onedark.vim'
 Plug 'posva/vim-vue'
 " Failing randomly : ( Plug 'shmargum/vim-sass-colors'
@@ -172,6 +186,11 @@ Plug 'jiangmiao/auto-pairs'
 
 Plug 'Yggdroot/indentLine'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+" CSV helper
+Plug 'chrisbra/csv.vim'
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
