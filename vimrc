@@ -192,6 +192,10 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " CSV helper
 Plug 'chrisbra/csv.vim'
 
+" Python
+Plug 'davidhalter/jedi-vim'
+Plug 'deoplete-plugins/deoplete-jedi'
+
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
@@ -211,6 +215,9 @@ Plug 'honza/vim-snippets'
 
 " Requires neovim 0.5+
 Plug 'neovim/nvim-lspconfig'
+
+Plug 'godlygeek/tabular'
+Plug 'preservim/vim-markdown'
 
 call plug#end()
 
