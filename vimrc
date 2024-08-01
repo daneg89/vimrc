@@ -1,6 +1,8 @@
 " My leader will be - for now since it's not used all that often
 :let mapleader = "-"
 
+" Don't hide characters used for syntax highlighting (looking at you markdown)
+set conceallevel=0
 set foldmethod=syntax
 " Don't automatically fold everything on opening a file
 set foldlevel=99
