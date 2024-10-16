@@ -1,5 +1,6 @@
 " My leader will be - for now since it's not used all that often
 :let mapleader = "-"
+:let maplocalleader = "_"
 
 " Don't hide characters used for syntax highlighting (looking at you markdown)
 set conceallevel=0
@@ -121,110 +122,10 @@ cnoreabbrev Q q
 cnoreabbrev Qa qa
 cnoreabbrev Qall qall
 
-
-" Templates for when we creating new files
-:augroup FileTemplates
-:   autocmd!
-:   autocmd BufNewFile *.vue 0r ~/.vim/file-templates/vue-template.vue
-:augroup END
-
-
-" --------------- Begin Plugin Section --------------- 
-
-" Neovim specific config
-if has('nvim')
-  " Config directory setup and loading if there is anything
-  if !isdirectory($HOME."/.config/nvim/config")
-    call mkdir($HOME."/.config/nvim/config", "p")
-  endif
-
-  " Escape terminal
-  :tnoremap <Esc> <C-\><C-n>
-  " Allow paste of registers
-  :tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
-endif
-
-" Download and install Plug if not already available
-if has('nvim')
-	if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-		silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-					\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-		autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-	endif
-
-else
-	if empty(glob('~/.vim/autoload/plug.vim'))
-		silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-					\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-		autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-	endif
-endif
-
-
-call plug#begin()
-
-Plug 'tpope/vim-fugitive'
-Plug 'joshdick/onedark.vim'
-Plug 'posva/vim-vue'
-" Failing randomly : ( Plug 'shmargum/vim-sass-colors'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
-" Searching + Editing
-Plug 'dyng/ctrlsf.vim' 
-" Conquer of Completion, intellisense engine
-" Plug 'neoclide/coc.nvim', {'branch': 'release'} 
-" Async Lint Engine
-Plug 'dense-analysis/ale'
-" JavaScript syntax highlighting
-Plug 'pangloss/vim-javascript'
-Plug 'itchyny/lightline.vim'
-Plug 'vim-airline/vim-airline'
-Plug 'scrooloose/nerdtree'
-" Easy sorrounding features
-Plug 'tpope/vim-surround'
-" Git specific status symbols
-Plug 'airblade/vim-gitgutter'
-" Closing bracket/brace/quote/etc
-Plug 'jiangmiao/auto-pairs'
-
-Plug 'Yggdroot/indentLine'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
-
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-
-" CSV helper
-Plug 'chrisbra/csv.vim'
-
-" Python
-Plug 'davidhalter/jedi-vim'
-Plug 'deoplete-plugins/deoplete-jedi'
-
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-
-" Plug 'Shougo/neosnippet.vim'
-" Plug 'Shougo/neosnippet-snippets'
-
-" Track the engine.
-Plug 'SirVer/ultisnips'
-
-" Snippets are separated from the engine. Add this if you want them:
-Plug 'honza/vim-snippets'
-
-" Requires neovim 0.5+
-Plug 'neovim/nvim-lspconfig'
-
-Plug 'godlygeek/tabular'
-Plug 'preservim/vim-markdown'
-
-call plug#end()
+au BufNewFile,BufReadPost *.md set conceallevel=0
 
 syntax on
-colorscheme onedark
+" colorscheme onedark
 " Remove bg to let term choose
 hi Normal guibg=NONE ctermbg=NONE
 
@@ -237,10 +138,6 @@ hi Normal guibg=NONE ctermbg=NONE
 :nnoremap <leader>h :call matchadd("Angry\|Danger\|Nice", "")
 :nnoremap <leader>l :call clearmatches()<CR>
 
-" Any custom plugin config files can be run now
-if has('nvim')
-  " Config directory setup and loading if there is anything
-  for f in split(glob('~/.config/nvim/config/*.vim'), '\n')
-    exe 'source' f
-  endfor
-endif
+:tnoremap <Esc> <C-\><C-n>
+" Allow paste of registers
+:tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
