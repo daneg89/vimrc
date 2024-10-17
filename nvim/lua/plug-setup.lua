@@ -14,6 +14,16 @@ Plug('nvim-telescope/telescope.nvim', { tag = '0.1.8' })
 
 Plug('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate'})
 
+-- Managing LSP installations
+Plug('williamboman/mason.nvim')
+Plug('williamboman/mason-lspconfig.nvim')
+
+-- Autocompletion
+Plug('neovim/nvim-lspconfig')
+Plug('hrsh7th/nvim-cmp')
+Plug('hrsh7th/cmp-nvim-lsp')
+Plug('VonHeikemen/lsp-zero.nvim', {['branch'] = 'v4.x'})
+
 Plug('tpope/vim-fugitive')
 Plug('joshdick/onedark.vim')
 Plug('posva/vim-vue')
@@ -40,36 +50,27 @@ Plug('mfussenegger/nvim-dap')
 Plug('leoluz/nvim-dap-go')
 
 Plug('Yggdroot/indentLine')
-Plug('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && yarn install'  })
 
 Plug('fatih/vim-go', { ['do'] = ':GoUpdateBinaries' })
 
--- CSV helper
-Plug('chrisbra/csv.vim')
-
 -- Python
 Plug('davidhalter/jedi-vim')
-Plug('deoplete-plugins/deoplete-jedi')
-
-Plug('Shougo/deoplete.nvim', { ['do'] = ':UpdateRemotePlugins' })
-
--- Track the engine.
-Plug('SirVer/ultisnips')
-
--- Snippets are separated from the engine. Add this if you want them:
-Plug('honza/vim-snippets')
 
 -- Requires neovim 0.5+
 Plug('neovim/nvim-lspconfig')
 
+-- Nice tab indentation visualization
 Plug('godlygeek/tabular')
+
 Plug('preservim/vim-markdown')
 
 -- Clojure
 Plug('Olical/conjure')
+Plug('PaterJason/cmp-conjure')
 Plug('guns/vim-sexp')
+
 -- Rainbow paren
-Plug('luochen1990/rainbow')
+Plug('HiPhish/rainbow-delimiters.nvim')
 
 
 vim.call('plug#end')

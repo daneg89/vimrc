@@ -9,4 +9,3 @@ vim.keymap.set('n', "<leader>.l", ":luafile ~/.config/nvim/init.lua<CR>")
 -- I don't know why this has to be a lua module, but if it's not then it doesn't seem to actually
 -- load the plugins properly
 require("plug-setup")
-require("post-plugin-setup")

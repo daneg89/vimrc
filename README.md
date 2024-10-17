@@ -2,8 +2,7 @@
 
 ## Plugin Requirements
 
-* [neovim](https://neovim.io/) (Preferred) or Vim 8+
-* Latest stable version of [Node.js](https://nodejs.org) for [CoC plugin](https://github.com/neoclide/coc.nvim)
+* [neovim](https://neovim.io/) v0.10.x+
 * Installation of [rg](https://github.com/BurntSushi/ripgrep) (ripgrep) or some other search utility for the CtrlSF plugin
 
 ## Installation
@@ -32,3 +31,8 @@ The script will prompt you if it tries to overwrite an existing file, so provide
 Afterwards open up `nvim` and press `enter` after errors pop up about missing such or other.
 
 Run the `:PlugInstall` command and wait for all the plugins to install. Afterwards exit and open up nvim again. If no errors show then you should be good to go!
+
+### Mason
+
+This should be configured already, but if autocomplete is not working we there might be LSPs that have not been installed yet. 
+Use :Mason to open up the tool and find all 
