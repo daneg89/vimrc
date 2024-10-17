@@ -22,6 +22,7 @@ Plug('williamboman/mason-lspconfig.nvim')
 Plug('neovim/nvim-lspconfig')
 Plug('hrsh7th/nvim-cmp')
 Plug('hrsh7th/cmp-nvim-lsp')
+Plug('hrsh7th/cmp-buffer')
 Plug('VonHeikemen/lsp-zero.nvim', {['branch'] = 'v4.x'})
 
 Plug('tpope/vim-fugitive')
