@@ -72,6 +72,7 @@ Plug('guns/vim-sexp')
 -- Rainbow paren
 Plug('HiPhish/rainbow-delimiters.nvim')
 
+Plug('ThePrimeagen/harpoon', { ['branch'] = "harpoon2" })
 
 vim.call('plug#end')
 

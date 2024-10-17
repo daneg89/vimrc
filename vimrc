@@ -26,6 +26,8 @@ set number
 set relativenumber
 set ruler
 
+set nowrap
+
 " This will always keep the cursor in the middle, even when moving up/down
 " with anything. Trying this out for now to see if it feels better, but
 " might be cool to see how keeping things in focus feels.
@@ -71,12 +73,19 @@ set wildignore+=**/dist/**
 :nnoremap <leader>O O<ESC>
 :nnoremap <leader>o o<ESC>
 
-" Move between windows more simply. Moving between horizontally split windows
-" will cause the current window to be maximized.
+" Move between windows more simply
 :nnoremap <C-h> <C-w>h
-:nnoremap <C-j> <C-w>j
-:nnoremap <C-k> <C-w>k
 :nnoremap <C-l> <C-w>l
+
+:nnoremap <C-j> :cnext<CR>
+:nnoremap <C-k> :cprev<CR>
+
+:nnoremap <leader>j :lnext<CR>
+:nnoremap <leader>k :lprev<CR>
+
+" Thanks Primeagen
+:vnoremap <leader>y "+y
+:nnoremap J mzJ`z
 
 " Escape is so far away, let's avoid it
 :inoremap jk <ESC>
