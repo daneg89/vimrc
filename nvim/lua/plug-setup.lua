@@ -26,7 +26,9 @@ Plug('hrsh7th/cmp-buffer')
 Plug('VonHeikemen/lsp-zero.nvim', {['branch'] = 'v4.x'})
 
 Plug('tpope/vim-fugitive')
-Plug('joshdick/onedark.vim')
+
+Plug('catppuccin/nvim', { ['as'] = 'catppuccin' })
+
 Plug('posva/vim-vue')
 Plug('junegunn/fzf', { dir = '~/.fzf' })
 -- Searching + Editing

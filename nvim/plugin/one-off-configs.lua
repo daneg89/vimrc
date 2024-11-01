@@ -1,10 +1,10 @@
 -- Because sometimes you're too lazy to make a file for every single plugin
 
 -- Lightline theme
-vim.g.lightline = { colorscheme = 'onedark' }
+vim.g.lightline = { colorscheme = 'catppuccin' }
 
 -- Airline theme
-vim.g.airline_theme='onedark'
+vim.g.airline_theme='catppuccin'
 
 -- NERDTree
 vim.keymap.set('n', "<leader>e", ":NERDTreeToggle<CR>")
