@@ -1,0 +1,4 @@
+alias 3nv="nvim +term +vsplit -c \"wincmd l\" +term +split -c \"wincmd j\" +term -c \"wincmd h\""
+alias np="nvim --noplugin -u ~/.vimrc"
+alias vi="nvim"
+alias vim="nvim"
