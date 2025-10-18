@@ -2,7 +2,8 @@
 
 ## Plugin Requirements
 
-* [neovim](https://neovim.io/) v0.10.x+
+* curl (to autoload Plug)
+* [neovim](https://neovim.io/) v0.11.x+
 * Installation of [rg](https://github.com/BurntSushi/ripgrep) (ripgrep) or some other search utility for the CtrlSF plugin
 
 ## Installation
